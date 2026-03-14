@@ -11,13 +11,13 @@ import json
 import os
 from datetime import datetime
 
-from products.models import Product, Brand, Category
-from inventory.models import InventoryTransaction, LowStockAlert
+from rohit_mobile_project.products.models import Product, Brand, Category
+from rohit_mobile_project.inventory.models import InventoryTransaction, LowStockAlert
 from .serializers import (
     ProductListSerializer, ProductDetailSerializer, ProductCreateUpdateSerializer,
     InventoryTransactionSerializer, LowStockAlertSerializer
 )
-from ai_services.detector import AIProductDetector
+from rohit_mobile_project.ai_services.detector import AIProductDetector
 
 
 class ProductViewSet(viewsets.ModelViewSet):

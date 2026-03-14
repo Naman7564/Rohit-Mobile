@@ -9,7 +9,7 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),
+    path('api/', include('rohit_mobile_project.api.urls')),
     path('', TemplateView.as_view(template_name='index.html'), name='home'),
     path('products/', TemplateView.as_view(template_name='products.html'), name='products'),
     path('products/<int:product_id>/', TemplateView.as_view(template_name='product_detail.html'), name='product_detail'),

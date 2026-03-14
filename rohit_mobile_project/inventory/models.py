@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
-from products.models import Product
+from rohit_mobile_project.products.models import Product
 from django.utils import timezone
 
 class InventoryTransaction(models.Model):

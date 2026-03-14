@@ -2,8 +2,8 @@
 API Serializers for Products and Inventory
 """
 from rest_framework import serializers
-from products.models import Product, Brand, Category, ProductImage
-from inventory.models import InventoryTransaction, LowStockAlert
+from rohit_mobile_project.products.models import Product, Brand, Category, ProductImage
+from rohit_mobile_project.inventory.models import InventoryTransaction, LowStockAlert
 
 
 class BrandSerializer(serializers.ModelSerializer):
