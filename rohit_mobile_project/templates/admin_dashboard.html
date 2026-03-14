@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohit Mobile - Admin Dashboard</title>
+    <link rel="stylesheet" href="/static/css/admin-dashboard.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>Rohit Mobile Admin</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active" data-section="dashboard">Dashboard</a>
+                <a href="#add-product" class="nav-item" data-section="add-product">Add Product</a>
+                <a href="#inventory" class="nav-item" data-section="inventory">Inventory Management</a>
+                <a href="#low-stock" class="nav-item" data-section="low-stock">Low Stock Alerts</a>
+                <a href="#products" class="nav-item" data-section="products">All Products</a>
+            </nav>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active">
+                <div class="section-header">
+                    <h1>Dashboard</h1>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-products">0</div>
+                        <div class="stat-label">Total Products</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="low-stock-count">0</div>
+                        <div class="stat-label">Low Stock Items</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-stock">0</div>
+                        <div class="stat-label">Total Stock</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Add Product Section -->
+            <section id="add-product" class="content-section">
+                <div class="section-header">
+                    <h1>Add Product</h1>
+                </div>
+                
+                <div class="add-product-methods">
+                    <button class="method-btn" id="camera-btn">
+                        <span class="icon">📷</span>
+                        <span>Add Using Camera</span>
+                    </button>
+                    <button class="method-btn" id="upload-btn">
+                        <span class="icon">📁</span>
+                        <span>Upload Image</span>
+                    </button>
+                </div>
+
+                <!-- Product Form -->
+                <div class="product-form-container">
+                    <form id="product-form" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="product-name">Product Name *</label>
+                            <input type="text" id="product-name" name="name" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="product-brand">Brand</label>
+                                <input type="text" id="product-brand" name="brand">
+                            </div>
+                            <div class="form-group">
+                                <label for="product-category">Category *</label>
+                                <select id="product-category" name="category" required>
+                                    <option value="">Select Category</option>
+                                    <option value="mobile">Mobile Phone</option>
+                                    <option value="charger">Charger</option>
+                                    <option value="cable">Cable</option>
+                                    <option value="earbuds">Earbuds</option>
+                                    <option value="accessories">Accessories</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="product-model">Model Number</label>
+                                <input type="text" id="product-model" name="model_number">
+                            </div>
+                            <div class="form-group">
+                                <label for="product-sku">SKU *</label>
+                                <input type="text" id="product-sku" name="sku" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="product-price">Price (₹) *</label>
+                                <input type="number" id="product-price" name="price" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-discount">Discount Price (₹)</label>
+                                <input type="number" id="product-discount" name="discount_price" step="0.01">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="product-color">Color</label>
+                                <input type="text" id="product-color" name="color">
+                            </div>
+                            <div class="form-group">
+                                <label for="product-storage">Storage Variant</label>
+                                <input type="text" id="product-storage" name="storage_variant" placeholder="e.g., 128GB">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product-description">Description *</label>
+                            <textarea id="product-description" name="description" rows="4" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product-image">Product Image *</label>
+                            <input type="file" id="product-image" name="image" accept="image/*" required>
+                            <div id="image-preview" class="image-preview"></div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Add Product</button>
+                        <button type="reset" class="btn btn-secondary">Clear Form</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Inventory Management Section -->
+            <section id="inventory" class="content-section">
+                <div class="section-header">
+                    <h1>Inventory Management</h1>
+                </div>
+                
+                <div class="inventory-controls">
+                    <input type="text" id="inventory-search" placeholder="Search products...">
+                </div>
+
+                <div id="inventory-list" class="inventory-list">
+                    <!-- Inventory items will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Low Stock Alerts Section -->
+            <section id="low-stock" class="content-section">
+                <div class="section-header">
+                    <h1>Low Stock Alerts</h1>
+                </div>
+                
+                <div id="alerts-list" class="alerts-list">
+                    <!-- Alerts will be loaded here -->
+                </div>
+            </section>
+
+            <!-- All Products Section -->
+            <section id="products" class="content-section">
+                <div class="section-header">
+                    <h1>All Products</h1>
+                </div>
+                
+                <div class="products-controls">
+                    <input type="text" id="products-search" placeholder="Search products...">
+                    <select id="products-category-filter">
+                        <option value="">All Categories</option>
+                        <option value="mobile">Mobile Phone</option>
+                        <option value="charger">Charger</option>
+                        <option value="cable">Cable</option>
+                        <option value="earbuds">Earbuds</option>
+                        <option value="accessories">Accessories</option>
+                    </select>
+                </div>
+
+                <div id="products-list" class="products-list">
+                    <!-- Products will be loaded here -->
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Camera Modal -->
+    <div id="camera-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Capture Product Image</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <video id="camera-video" autoplay playsinline></video>
+                <canvas id="camera-canvas" style="display: none;"></canvas>
+                <div id="camera-preview" class="camera-preview"></div>
+            </div>
+            <div class="modal-footer">
+                <button id="capture-btn" class="btn btn-primary">Capture Photo</button>
+                <button id="retake-btn" class="btn btn-secondary" style="display: none;">Retake</button>
+                <button id="process-btn" class="btn btn-success" style="display: none;">Process with AI</button>
+                <button id="close-camera-btn" class="btn btn-secondary">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stock Update Modal -->
+    <div id="stock-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Update Stock</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="stock-product-name">Product</label>
+                    <input type="text" id="stock-product-name" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="stock-quantity">Quantity</label>
+                    <input type="number" id="stock-quantity" min="1" value="1">
+                </div>
+                <div class="form-group">
+                    <label for="stock-type">Transaction Type</label>
+                    <select id="stock-type">
+                        <option value="add">Add Stock</option>
+                        <option value="remove">Remove Stock</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="stock-notes">Notes</label>
+                    <textarea id="stock-notes" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="save-stock-btn" class="btn btn-primary">Save</button>
+                <button id="close-stock-modal-btn" class="btn btn-secondary">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/admin-dashboard.js"></script>
+</body>
+</html>

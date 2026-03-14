@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Rohit Mobile</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <h1>📱 Rohit Mobile</h1>
+            </div>
+            <ul class="navbar-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/products/" class="active">Products</a></li>
+                <li><a href="/">Categories</a></li>
+                <li><a href="/">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Products Page -->
+    <div class="products-container">
+        <!-- Sidebar Filters -->
+        <aside class="filters-sidebar">
+            <h3>Filters</h3>
+            
+            <div class="filter-group">
+                <h4>Category</h4>
+                <div class="filter-options">
+                    <label><input type="checkbox" class="category-filter" value="mobile"> Mobile Phones</label>
+                    <label><input type="checkbox" class="category-filter" value="charger"> Chargers</label>
+                    <label><input type="checkbox" class="category-filter" value="cable"> Cables</label>
+                    <label><input type="checkbox" class="category-filter" value="earbuds"> Earbuds</label>
+                    <label><input type="checkbox" class="category-filter" value="accessories"> Accessories</label>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h4>Price Range</h4>
+                <input type="range" id="price-range" min="0" max="100000" value="100000">
+                <p>Up to ₹<span id="price-value">100000</span></p>
+            </div>
+
+            <div class="filter-group">
+                <h4>Brand</h4>
+                <input type="text" id="brand-search" placeholder="Search brand...">
+                <div id="brand-list" class="filter-options">
+                    <!-- Brands will be loaded here -->
+                </div>
+            </div>
+
+            <button id="apply-filters" class="btn btn-primary">Apply Filters</button>
+            <button id="reset-filters" class="btn btn-secondary">Reset</button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="products-main">
+            <div class="products-header">
+                <h1>Our Products</h1>
+                <div class="products-toolbar">
+                    <input type="text" id="search-products" class="search-input" placeholder="Search products...">
+                    <select id="sort-products">
+                        <option value="latest">Latest</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="name">Name: A to Z</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="products-grid" class="products-grid">
+                <!-- Products will be loaded here -->
+            </div>
+
+            <div id="no-products" class="no-products" style="display: none;">
+                <p>No products found matching your criteria.</p>
+            </div>
+
+            <div id="loading" class="loading" style="display: none;">
+                <p>Loading products...</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div id="product-modal" class="modal product-modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="modal-body">
+                <div class="product-modal-image">
+                    <img id="modal-product-image" src="" alt="">
+                </div>
+                <div class="product-modal-info">
+                    <h2 id="modal-product-name"></h2>
+                    <p class="brand" id="modal-product-brand"></p>
+                    <div class="rating">
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <div class="price-section">
+                        <span class="price" id="modal-product-price"></span>
+                        <span class="original-price" id="modal-product-original-price"></span>
+                        <span class="discount" id="modal-product-discount"></span>
+                    </div>
+                    <div class="details">
+                        <p><strong>Category:</strong> <span id="modal-product-category"></span></p>
+                        <p><strong>Model:</strong> <span id="modal-product-model"></span></p>
+                        <p><strong>Color:</strong> <span id="modal-product-color"></span></p>
+                        <p id="storage-info" style="display: none;"><strong>Storage:</strong> <span id="modal-product-storage"></span></p>
+                        <p><strong>Stock:</strong> <span id="modal-product-stock"></span></p>
+                    </div>
+                    <p class="description" id="modal-product-description"></p>
+                    <button class="btn btn-primary" id="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Rohit Mobile. All rights reserved.</p>
+            <p>Premium Mobile Phones & Accessories Store</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/products.js"></script>
+</body>
+</html>
