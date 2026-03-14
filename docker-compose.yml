@@ -2,17 +2,15 @@ services:
   web:
     build: .
     container_name: rohit_mobile_web
-    command: sh -c "python manage.py migrate && gunicorn rohit_mobile_project.wsgi --bind 0.0.0.0:8000 --workers 4 --timeout 120"
+    command: sh -c "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn rohit_mobile_project.wsgi --bind 0.0.0.0:8000 --workers 4 --timeout 120"
     volumes:
       - .:/app
-      - static_volume:/app/staticfiles
-      - media_volume:/app/media
     ports:
       - "8000:8000"
     environment:
       - DEBUG=False
       - DJANGO_SETTINGS_MODULE=rohit_mobile_project.settings
-      - ALLOWED_HOSTS=localhost,127.0.0.1,web,nginx
+      - ALLOWED_HOSTS=localhost,127.0.0.1,web,nginx,140.238.248.72
       - AI_PROVIDER=openai
       - OPENAI_API_KEY=${OPENAI_API_KEY:-your-api-key-here}
       - GOOGLE_API_KEY=${GOOGLE_API_KEY:-}
@@ -34,8 +32,7 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
-      - static_volume:/app/staticfiles:ro
-      - media_volume:/app/media:ro
+      - .:/app:ro
     depends_on:
       - web
     networks:
@@ -45,11 +42,6 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-
-volumes:
-  db_volume:
-  static_volume:
-  media_volume:
 
 networks:
   rohit_network:

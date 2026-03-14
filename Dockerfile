@@ -20,12 +20,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy project
 COPY . .
 
-# Collect static files (or skip if it fails - will collect on first run)
-RUN mkdir -p /app/staticfiles
-RUN python manage.py collectstatic --noinput --clear 2>/dev/null || true
-
-# Create media directory
-RUN mkdir -p /app/media
+# Create necessary directories
+RUN mkdir -p /app/staticfiles /app/media
 
 # Run migrations and start server
-CMD ["sh", "-c", "python manage.py migrate && gunicorn rohit_mobile_project.wsgi --bind 0.0.0.0:8000 --workers 4"]
+CMD ["sh", "-c", "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn rohit_mobile_project.wsgi --bind 0.0.0.0:8000 --workers 4 --timeout 120"]
