@@ -24,10 +24,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'products',
-    'inventory',
-    'api',
-    'ai_services',
+    'rohit_mobile_project.products',
+    'rohit_mobile_project.inventory',
+    'rohit_mobile_project.api',
+    'rohit_mobile_project.ai_services',
 ]
 
 MIDDLEWARE = [
