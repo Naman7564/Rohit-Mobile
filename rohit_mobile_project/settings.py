@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'products',
     'inventory',
     'api',
+    'ai_services',
 ]
 
 MIDDLEWARE = [
